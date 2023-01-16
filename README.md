@@ -48,8 +48,8 @@ Click here to go to the specific section:
 [Setting Up Email Notification - Console](#setting-up-email-configuration-for-console).  
 [Setting Up Email Notification - Shares](#setting-up-email-configuration-for-shares).  
 [Create and Authorize Users in Shares](#create-and-authorize-user-in-shares).   
-[Test Various Client Options](#test-various-client-options)
-[Basic Functionalities of Console](#basic-functionalities-of-console)
+[Test Various Client Options](#test-various-client-options).  
+[Basic Functionalities of Console](#basic-functionalities-of-console).  
 
 
 Path 2 – HSTS and Faspex5 (Estimated time: 1 hour).  
@@ -292,6 +292,7 @@ Install common and console rpms. (we are using wildcards for file names, ensure 
 		cd /opt/software/
 		yum install -y perl
 		yum localinstall -y ibm-aspera-common-*.x86_64.rpm ibm-aspera-console-*.x86_64.rpm
+		  
 [Ignore any "xterm-256color" related notifications.]
 
 		Now setup Console
@@ -522,7 +523,7 @@ Check the container status:
  
 All containers should be in Up status.
 
-4.	Add HSTS as Transfer Node in Faspex5.  
+4. Add HSTS as Transfer Node in Faspex5.  
 Faspex5 is a web application. We need to add a Transfer server for file transfer purposes. 
  
 On the HSTS node, create a package_storage folder under /data/faspex5_data
@@ -558,7 +559,7 @@ Go to “Nodes and Storage” -> Click on the newly added node -> Click on “St
 The final step is to click on Advanced configuration and put the PUBLIC IP address of the HSTS server in field “Primary transfer address or name” then click “Save”.   
 ![](images/image39.png)
 
-5.	Enable Sending Packages to External Emails.  
+5. Enable Sending Packages to External Emails.  
 For the purpose of this lab, we will allow sending packages to external emails.  This should be enabled by default. Check and enable if it is disabled. 
 From the Faspex5 Admin page, Go to Security->Advanced collaboration and set the Outgoing packages->External users default to “Allow”
 
