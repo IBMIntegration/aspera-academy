@@ -39,8 +39,8 @@ Path 1 – HSTS, Console and Shares (Estimated time: 2 hours).
 ![](images/image01.jpg)    
 
 Click here to go to the specific section:   
-[Lab Pre-requisites](##Lab-Prerequisites).  
-[Install Transfer Server](##Install-Transfer-Server-on-HSTS-system).  
+[Lab Pre-requisites](#Lab-Prerequisites).  
+[Install Transfer Server](#install-transfer-server-on-hsts-system).  
 
 Path 2 – HSTS and Faspex5 (Estimated time: 1 hour).  
 ![](images/image02.jpg)   
