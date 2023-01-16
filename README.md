@@ -39,11 +39,30 @@ Path 1 – HSTS, Console and Shares (Estimated time: 2 hours).
 ![](images/image01.jpg)    
 
 Click here to go to the specific section:   
-[Lab Pre-requisites](#Lab-Prerequisites).  
-[Install Transfer Server](#install-transfer-server-on-hsts-system).  
+[Lab Pre-requisites](#lab-prerequisites).     
+[Install Transfer Server](#install-transfer-server-on-hsts-system).    
+[Prepare HSTS for Console Integration](#prepare-hsts-for-console-integration).    
+[Prepare HSTS for Shares Integration](#prepare-hsts-for-shares-integration).    
+[Install and Setup Console](#install-and-setup-console-on-system-2).        
+[Install and Setup Shares](#install-and-setup-shares-on-the-hsts-node).  
+[Setting Up Email Notification - Console](#setting-up-email-configuration-for-console).  
+[Setting Up Email Notification - Shares](#setting-up-email-configuration-for-shares).  
+[Create and Authorize Users in Shares](#create-and-authorize-user-in-shares).   
+[Test Various Client Options](#test-various-client-options)
+[Basic Functionalities of Console](#basic-functionalities-of-console)
+
 
 Path 2 – HSTS and Faspex5 (Estimated time: 1 hour).  
 ![](images/image02.jpg)   
+[Lab Pre-requisites](#lab-prerequisites).     
+[Install Transfer Server](#install-transfer-server-on-hsts-system).    
+[Prepare HSTS for Faspex5 Integration](#prepare-hsts-for-faspex5-integration).  
+[Install and Setup Faspex5](#install-and-setup-faspex5-on-the-third-node).  
+[Setting Up Email Notification - Faspex5](#setting-up-email-notification-in-faspex).   
+[Create and Suthorize Users in Faspex5](#create-and-authorize-faspex5-end-user).  
+[Test Various Client Options](#test-various-client-options).  
+
+
 
 ## Lab Prerequisites
 
@@ -130,6 +149,32 @@ Example of copy command:
 
 		mkdir /data
 		chmod 777 /data
+
+## Prepare HSTS for Console Integration
+
+The following steps are required for integrating HSTS with Console for monitoring purposes.  
+
+1.	Turn on async activity logging.
+
+
+		asconfigurator -x "set_client_data;async_management_activity_logging,true"
+		asconfigurator -x "set_node_data;async_activity_logging,true"
+
+2.	Create a transfer user (consoleuser). This user will NOT be used for any transfers. Hence, there is no need to setup token based authentication for the user. 
+
+		useradd consoleuser
+		
+		Define Docroot storage for consoleuser [this is to avoid unnecessary errors in logs]
+		asconfigurator -F \ "set_user_data;user_name,consoleuser;absolute,/tmp/"
+		
+		/opt/aspera/bin/asnodeadmin -a -u consolenodeuser -p consolenodepw -x consoleuser --acl-set "admin,impersonation"
+		/opt/aspera/bin/asnodeadmin -l
+
+![](images/image10.png)
+
+We will be creating multiple Node users throughout the labs. Take note of what node user you are creating. The one we have created in the above step is the “Console Node User”.   
+
+
 
 ## Prepare HSTS for Shares Integration
 
@@ -237,31 +282,8 @@ We will be creating multiple Node users throughout the labs. Take note of what n
 ![](images/image09.png)
 
 
-## Prepare HSTS for Console Integration
 
-The following steps are required for integrating HSTS with Console for monitoring purposes.  
-
-1.	Turn on async activity logging.
-
-
-		asconfigurator -x "set_client_data;async_management_activity_logging,true"
-		asconfigurator -x "set_node_data;async_activity_logging,true"
-
-2.	Create a transfer user (consoleuser). This user will NOT be used for any transfers. Hence, there is no need to setup token based authentication for the user. 
-
-		useradd consoleuser
-		
-		Define Docroot storage for consoleuser [this is to avoid unnecessary errors in logs]
-		asconfigurator -F \ "set_user_data;user_name,consoleuser;absolute,/tmp/"
-		
-		/opt/aspera/bin/asnodeadmin -a -u consolenodeuser -p consolenodepw -x consoleuser --acl-set "admin,impersonation"
-		/opt/aspera/bin/asnodeadmin -l
-
-![](images/image10.png)
-
-We will be creating multiple Node users throughout the labs. Take note of what node user you are creating. The one we have created in the above step is the “Console Node User”.   
-
-## Install and Setup Console on System 2 (named Console)
+## Install and Setup Console on System 2
 
 ### Install Console
 Install common and console rpms. (we are using wildcards for file names, ensure there is only one of each of the rpm files in /opt/software/console)
@@ -336,18 +358,6 @@ In the next screen click on “Test Credentials”. You should see a message say
 
 ![](images/image17.png)
 
-## Setting up Email Configuration for Console
-
-Login to the Console page. Go to Notifications -> Email Server.
-Enter the details. The screenshot shows an example of using Gmail. You can use your own SMTP server. 
-
-![](images/image18.png)
-
-Click on “Save Settings and send test email”. 
-That should send an email to the recipient. Sample email as below.
-
-![](images/image19.png)
-
 
 ## Install and Setup Shares on the HSTS node
 
@@ -414,6 +424,20 @@ Click on “Test” and the status should be ‘OK’
 
 ![](images/image25.png)
 
+## Setting up Email Configuration for Console
+
+Login to the Console page. Go to Notifications -> Email Server.
+Enter the details. The screenshot shows an example of using Gmail. You can use your own SMTP server. Refer to [Using Gmail as SMTP server](#using-gmail-as-smtp-server) on how to obtain details about Gmail. 
+
+![](images/image18.png)
+
+Click on “Save Settings and send test email”. 
+That should send an email to the recipient. Sample email as below.
+
+![](images/image19.png)
+
+
+
 ## Create and Authorize user in Shares
 
 We will create a user and authorize the user to a specific folder. 
@@ -457,7 +481,7 @@ We have created a Shares End User and have assigned full access for a particular
 
 ## Setting up Email Configuration for Shares
 Login to the Shares Admin page. Go to “SMTP” under Email.
-Enter the details. The screenshot shows an example of using Gmail. You can use your own SMTP server.   
+Enter the details. The screenshot shows an example of using Gmail. You can use your own SMTP server. Refer to [Using Gmail as SMTP server](#using-gmail-as-smtp-server) on how to obtain details about Gmail.     
 ![](images/image31.png)
  
 Click on “Update SMTP Server”.  
@@ -465,7 +489,7 @@ Then, click on “Send Test Email”. Enter an email address. This should send a
 
 ![](images/image32.png)
 
-## Install and Setup Faspex5 on the third node (called faspex)
+## Install and Setup Faspex5 on the third node
 
 1.	Install docker
 	
@@ -544,7 +568,7 @@ From the Faspex5 Admin page, Go to Security->Advanced collaboration and set the 
 
 ## Setting Up Email Notification in Faspex
 
-We will setup Email (SMTP) servers for sending notifications. You need to have access to a SMTP server to do this. Otherwise, you can make use of Gmail. Refer to the section on “Using Gmail as SMTP server”.
+We will setup Email (SMTP) servers for sending notifications. You need to have access to a SMTP server to do this. Otherwise, you can make use of Gmail. Refer to [Using Gmail as SMTP server](#using-gmail-as-smtp-server) on how to obtain details about Gmail.   
 
 Login to the Faspex5 Admin page. Go to Configuration -> Email Configuration.
 Enter the details. The screenshot shows an example of using Gmail. You can use your own SMTP server. 
@@ -575,7 +599,7 @@ When you click on Create. An email will be sent to the email address. Follow ins
 ![](images/image45.png)
  
 
-## Test various Client Options.  
+## Test various Client Options  
 
 ### Aspera Connect (Browser Extension / Plugin)
 
@@ -644,11 +668,45 @@ You will then see the shares you have access to.  You can click on the share and
 
 ### Aspera Mobile Application
 
+IBM Aspera mobile app is available for download from PlayStore and AppStore.  
+Open the respective AppStore / PlayStore and search for "IBM Aspera" application. Install the app.  
+Open the app -> Touch "Link Account" -> Touch "More Aspera Enterprise apps" -> Choose which Aspera web app you want to connect to. For the lab, we will try Shares.  
+
+Enter the details and click on "Link".   
+Once you are connected to your  Shares you'll be able to upload and download files from your mobile.   
+![](images/image61.png)
+
 
 ### Aspera Command-Line Interface
 
+There are a few different types of CLIs available for file transfers.  
+1. ASCLI.  
+	Documents and Download: [https://github.com/IBM/aspera-cli](https://github.com/IBM/aspera-cli).   
+	Supports multiple web applications as well as Aspera APIs.   
+	
+		Install:
+		sudo gem install aspera-cli
+		Check Version:
+		ascli -v
+		
+		To browse your shares:
+		ascli shares repo browse / --url=https://<Shares-IP> --username=<End-User-Username> --password=<End-User-Password>
+		E.g.
+		ascli shares repo browse / --url=https://shares.asperademo.com/ --username=rajan@my.ibm.com --password=secret
+		
+		To Upload to your shares:
+		ascli shares repository upload --to-folder="<Share-Name" FileToUpload --url=https://<Shares-IP>/ --username=<End-User-Username> --password=<End-User-Password>
+		E.g. 
+		ascli shares repository upload --to-folder="EU upload only" 10MB.bin --url=https://shares-eu.asperademo.com/ --username=rajan@my.ibm.com --password=secret
+	 
+2. ASCP.  
+	This tool is available as part of IBM Aspera transfer products (HSTS, HSTE, Connect and Desktop Client). Can be used to transfer directly to the transfer server.   
+	[ascp - MAC](https://www.ibm.com/docs/en/asdc/4.4?topic=macos-ascp-transferring-from-command-line).  
+	[ascp - Windows](https://www.ibm.com/docs/en/asdc/4.4?topic=windows-ascp-transferring-from-command-line).  
+	
 
-## Basic Functionalities of Console.  
+
+## Basic Functionalities of Console  
 
 Console can be used for monitoring and managing transfers, managing transfer servers, and creating reports.    
 Refer to the Console Documents for the full functionalities of Console.    
