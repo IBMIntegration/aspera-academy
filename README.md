@@ -524,6 +524,7 @@ Check the container status:
 All containers should be in Up status.
 
 4. Add HSTS as Transfer Node in Faspex5.  
+
 Faspex5 is a web application. We need to add a Transfer server for file transfer purposes. 
  
 On the HSTS node, create a package_storage folder under /data/faspex5_data
@@ -560,6 +561,7 @@ The final step is to click on Advanced configuration and put the PUBLIC IP addre
 ![](images/image39.png)
 
 5. Enable Sending Packages to External Emails.  
+
 For the purpose of this lab, we will allow sending packages to external emails.  This should be enabled by default. Check and enable if it is disabled. 
 From the Faspex5 Admin page, Go to Security->Advanced collaboration and set the Outgoing packages->External users default to “Allow”
 
