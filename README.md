@@ -1,6 +1,6 @@
 # IBM Aspera Products Lab
 
-## About this Lab
+## 1 About this Lab
 
 In this lab, you will learn:  
 -	To install and configure HSTS.  
@@ -39,32 +39,32 @@ Path 1 – HSTS, Console and Shares (Estimated time: 2 hours).
 ![](images/image01.jpg)    
 
 Click here to go to the specific section:   
-[Lab Pre-requisites](#lab-prerequisites).     
-[Install Transfer Server](#install-transfer-server-on-hsts-system).    
-[Prepare HSTS for Console Integration](#prepare-hsts-for-console-integration).    
-[Prepare HSTS for Shares Integration](#prepare-hsts-for-shares-integration).    
-[Install and Setup Console](#install-and-setup-console-on-system-2).        
-[Install and Setup Shares](#install-and-setup-shares-on-the-hsts-node).  
-[Setting Up Email Notification - Console](#setting-up-email-configuration-for-console).  
-[Setting Up Email Notification - Shares](#setting-up-email-configuration-for-shares).  
-[Create and Authorize Users in Shares](#create-and-authorize-user-in-shares).   
-[Test Various Client Options](#test-various-client-options).  
-[Basic Functionalities of Console](#basic-functionalities-of-console).  
+[Lab Pre-requisites](#2-lab-prerequisites).     
+[Install Transfer Server](#3-install-transfer-server-on-hsts-system).    
+[Prepare HSTS for Console Integration](#4-prepare-hsts-for-console-integration).    
+[Prepare HSTS for Shares Integration](#5-prepare-hsts-for-shares-integration).    
+[Install and Setup Console](#7-install-and-setup-console-on-system-2).        
+[Install and Setup Shares](#8-install-and-setup-shares-on-the-hsts-node).  
+[Setting Up Email Notification - Console](#9-setting-up-email-configuration-for-console).  
+[Setting Up Email Notification - Shares](#11-setting-up-email-configuration-for-shares).  
+[Create and Authorize Users in Shares](#10-create-and-authorize-user-in-shares).   
+[Test Various Client Options](#15-test-various-client-options).  
+[Basic Functionalities of Console](#16-basic-functionalities-of-console).  
 
 
 Path 2 – HSTS and Faspex5 (Estimated time: 1 hour).  
 ![](images/image02.jpg)   
-[Lab Pre-requisites](#lab-prerequisites).     
-[Install Transfer Server](#install-transfer-server-on-hsts-system).    
-[Prepare HSTS for Faspex5 Integration](#prepare-hsts-for-faspex5-integration).  
-[Install and Setup Faspex5](#install-and-setup-faspex5-on-the-third-node).  
-[Setting Up Email Notification - Faspex5](#setting-up-email-notification-in-faspex).   
-[Create and Suthorize Users in Faspex5](#create-and-authorize-faspex5-end-user).  
-[Test Various Client Options](#test-various-client-options).  
+[Lab Pre-requisites](#2-lab-prerequisites).     
+[Install Transfer Server](#3-install-transfer-server-on-hsts-system).    
+[Prepare HSTS for Faspex5 Integration](#6-prepare-hsts-for-faspex5-integration).  
+[Install and Setup Faspex5](#12-install-and-setup-faspex5-on-the-third-node).  
+[Setting Up Email Notification - Faspex5](#13-setting-up-email-notification-in-faspex).   
+[Create and Authorize Users in Faspex5](#14-create-and-authorize-faspex5-end-user).  
+[Test Various Client Options](#15-test-various-client-options).  
 
 
 
-## Lab Prerequisites
+## 2 Lab Prerequisites
 
 1.	Three servers (physical or VM) with at least 2 cores, 8GB RAM and 10GB storage. CentOS 7.x or RHEL 8.x operating system. [ This hardware spec and co-hosting of components is for lab purposes only. NOT suitable for customer environment] 
 2. In this lab document, we will refer to the systems by 3 names, HSTS, Console, and Faspex.   
@@ -116,7 +116,7 @@ Edit /etc/selinux/config. Change the line that starts with “SELINUX” to the 
 For this lab, a sendgrid smtp server will be provided for email notifications.  This relay is not guaranteed to be around for very long after this training session, so you may have to use the GMAIL configuration as described at the end of this document.
 
 
-## Install Transfer Server on HSTS system
+## 3 Install Transfer Server on HSTS system
 1.	From the folder that has the installation files, run these commands. (answer “y” to any prompts (note: these commands use wildcard characters, and assume there is only one public key zip file and one HSTS package in the /opt/software/hsts directory).  
 
 		hostname hsts 
@@ -150,7 +150,7 @@ Example of copy command:
 		mkdir /data
 		chmod 777 /data
 
-## Prepare HSTS for Console Integration
+## 4 Prepare HSTS for Console Integration
 
 The following steps are required for integrating HSTS with Console for monitoring purposes.  
 
@@ -176,7 +176,7 @@ We will be creating multiple Node users throughout the labs. Take note of what n
 
 
 
-## Prepare HSTS for Shares Integration
+## 5 Prepare HSTS for Shares Integration
 
 The HSTS will need to be configured to be integrated with Shares. 
 
@@ -228,7 +228,7 @@ We will be creating multiple Node users throughout the labs. Take note of what n
 	![](images/image06.png)
 
 
-## Prepare HSTS for Faspex5 Integration
+## 6 Prepare HSTS for Faspex5 Integration
 The steps are pretty similar to what we did for Shares. 
 
 1.	Create a transfer user (faspex5user) to be used for Faspex based transfer. Setup the user for SSH Key based authentication. Set the user for token authentication and define a token. Define root folder for storing packages.   
@@ -283,7 +283,7 @@ We will be creating multiple Node users throughout the labs. Take note of what n
 
 
 
-## Install and Setup Console on System 2
+## 7 Install and Setup Console on System 2
 
 ### Install Console
 Install common and console rpms. (we are using wildcards for file names, ensure there is only one of each of the rpm files in /opt/software/console)
@@ -360,7 +360,7 @@ In the next screen click on “Test Credentials”. You should see a message say
 ![](images/image17.png)
 
 
-## Install and Setup Shares on the HSTS node
+## 8 Install and Setup Shares on the HSTS node
 
 Login to the node where we installed HSTS as root. 
 
@@ -425,7 +425,7 @@ Click on “Test” and the status should be ‘OK’
 
 ![](images/image25.png)
 
-## Setting up Email Configuration for Console
+## 9 Setting up Email Configuration for Console
 
 Login to the Console page. Go to Notifications -> Email Server.
 Enter the details. The screenshot shows an example of using Gmail. You can use your own SMTP server. Refer to [Using Gmail as SMTP server](#using-gmail-as-smtp-server) on how to obtain details about Gmail. 
@@ -439,7 +439,7 @@ That should send an email to the recipient. Sample email as below.
 
 
 
-## Create and Authorize user in Shares
+## 10 Create and Authorize user in Shares
 
 We will create a user and authorize the user to a specific folder. 
 
@@ -480,7 +480,7 @@ Click on Shares tab.
 We have created a Shares End User and have assigned full access for a particular share to the user. 
 
 
-## Setting up Email Configuration for Shares
+## 11 Setting up Email Configuration for Shares
 Login to the Shares Admin page. Go to “SMTP” under Email.
 Enter the details. The screenshot shows an example of using Gmail. You can use your own SMTP server. Refer to [Using Gmail as SMTP server](#using-gmail-as-smtp-server) on how to obtain details about Gmail.     
 ![](images/image31.png)
@@ -490,7 +490,7 @@ Then, click on “Send Test Email”. Enter an email address. This should send a
 
 ![](images/image32.png)
 
-## Install and Setup Faspex5 on the third node
+## 12 Install and Setup Faspex5 on the third node
 
 1.	Install docker
 	
@@ -569,7 +569,7 @@ From the Faspex5 Admin page, Go to Security->Advanced collaboration and set the 
 
 
 
-## Setting Up Email Notification in Faspex
+## 13 Setting Up Email Notification in Faspex
 
 We will setup Email (SMTP) servers for sending notifications. You need to have access to a SMTP server to do this. Otherwise, you can make use of Gmail. Refer to [Using Gmail as SMTP server](#using-gmail-as-smtp-server) on how to obtain details about Gmail.   
 
@@ -583,7 +583,7 @@ Click on “Test Email”. You will be prompted to enter an email address. Once 
 
 ![](images/image41.png)
 
-## Create and Authorize Faspex5 End user
+## 14 Create and Authorize Faspex5 End user
 
 We will create a Faspex5 End user and authorize the user to be able to send / receive packages in Faspex5.    
 You need to have an Email Server setup because new users creation will involve a step of sending an email to end-user to create password. If you have not setup Email notification, refer to section “Setting Up Email Notification in Faspex” and setup now.    
@@ -602,7 +602,7 @@ When you click on Create. An email will be sent to the email address. Follow ins
 ![](images/image45.png)
  
 
-## Test various Client Options  
+## 15 Test various Client Options  
 
 ### Aspera Connect (Browser Extension / Plugin)
 
@@ -709,7 +709,7 @@ There are a few different types of CLIs available for file transfers.
 	
 
 
-## Basic Functionalities of Console  
+## 16 Basic Functionalities of Console  
 
 Console can be used for monitoring and managing transfers, managing transfer servers, and creating reports.    
 Refer to the Console Documents for the full functionalities of Console.    
@@ -736,7 +736,7 @@ Report should be generated and emailed.
 
 ![](images/image60.png).  
 
-## Using Gmail as SMTP server
+## 17 Using Gmail as SMTP server
 
 We need to create an “App Password” in Gmail. We can then use this for setting up the SMTP server and for notification purposes.    
 This link explains how to create the App Password: 
