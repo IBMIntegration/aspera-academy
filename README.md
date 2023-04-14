@@ -444,7 +444,7 @@ Click on “Test” and the status should be ‘OK’
 ## 9 Setting up Email Configuration for Console
 
 Login to the Console page. Go to Notifications -> Email Server.
-Enter the details. The screenshot shows an example of using Gmail. You can use your own SMTP server. Refer to [Using Gmail as SMTP server](#-17-using-gmail-as-smtp-server) on how to obtain details about Gmail. 
+Enter the details. The screenshot shows an example of using Gmail. You can use your own SMTP server. Refer to [Using Gmail as SMTP server](#17-using-gmail-as-smtp-server) on how to obtain details about Gmail. 
 
 ![](images/image18.png)
 
@@ -498,7 +498,7 @@ We have created a Shares End User and have assigned full access for a particular
 
 ## 11 Setting up Email Configuration for Shares
 Login to the Shares Admin page. Go to “SMTP” under Email.
-Enter the details. The screenshot shows an example of using Gmail. You can use your own SMTP server. Refer to [Using Gmail as SMTP server](#-17-Using-Gmail-as-SMTP-server) on how to obtain details about Gmail.        
+Enter the details. The screenshot shows an example of using Gmail. You can use your own SMTP server. Refer to [Using Gmail as SMTP server](#17-using-gmail-as-smtp-server) on how to obtain details about Gmail.        
 
 ![](images/image31.png)
  
@@ -588,7 +588,7 @@ From the Faspex5 Admin page, Go to Security->Advanced collaboration and set the 
 
 ## 13 Setting Up Email Notification in Faspex
 
-We will setup Email (SMTP) servers for sending notifications. You need to have access to a SMTP server to do this. Otherwise, you can make use of Gmail. Refer to [Using Gmail as SMTP server](#-17-Using-Gmail-as-SMTP-server) on how to obtain details about Gmail.   
+We will setup Email (SMTP) servers for sending notifications. You need to have access to a SMTP server to do this. Otherwise, you can make use of Gmail. Refer to [Using Gmail as SMTP server](#17-using-gmail-as-smtp-server) on how to obtain details about Gmail.   
 
 Login to the Faspex5 Admin page. Go to Configuration -> Email Configuration.
 Enter the details. The screenshot shows an example of using Gmail. You can use your own SMTP server. 
