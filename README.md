@@ -69,14 +69,26 @@ Path 2 – HSTS and Faspex5 (Estimated time: 1 hour).
 1.	Three servers (physical or VM) with at least 2 cores, 8GB RAM and 10GB storage. CentOS 7.x or RHEL 8.x operating system. [ This hardware spec and co-hosting of components is for lab purposes only. NOT suitable for customer environment] 
 2. In this lab document, we will refer to the systems by 3 names, HSTS, Console, and Faspex.   
 3.	Login to your servers using Mac terminal or Putty (Windows users). If you do not have root access, you will have to use sudo to run the commands. 
-4.	The following installation software should be downloaded and made available in a local folder (e.g. /opt/software). 
+4. Make SSH listen on port 33001.   
+Edit the /etc/ssh/sshd_config file (use vi for editing). Add port 33001.   
+
+		#Port 22
+		Port 33001
+
+	Restart sshd. 
+
+			systemctl restart sshd  
+ 	Subsequently, to ssh into the server, use the command:
+ 	
+	 	ssh -p 33001 root@<IP Address>
+ 
+5.	The following installation software should be downloaded and made available in a local folder (e.g. /opt/software). 
 
 System1 (HSTS):
 >    
-ibm-aspera-hsts-\<version>-linux-64-release.rpm.   
-ibm-aspera-hsts-\<version>-linux64-public-key.pgp.zip.   
+ibm-aspera-hsts-\<version>-linux-64-release.rpm.    
 ibm-aspera-shares-\<version>.x86_64.rpm.    
-There will also be PDF documentation files in these directories.   
+
 
 
 System 2 (Console):   
@@ -85,35 +97,36 @@ ibm-aspera-common-\<version>.x86\_64.rpm.
 ibm-aspera-console-\<version>.x86\_64.rpm.  
 IBM\_Aspera\_Console\_\<version>\_Linux\_Windows\_Patch\_Level\_\<version>.zip.  
 There could be multiple patch files. Download all the patches.   
-There will also be PDF documentation files in these directories.  
+
 
 System 3 (Faspex):
 >    
 ibm-aspera-faspex-\<version>.x86\_64.rpm.  
 There will also be PDF documentation files in these directories.  
 
-5.	Licenses shoudl also be downloaded to a local foler (e.g. /opt/software).   
+6.	Licenses shoudl also be downloaded to a local foler (e.g. /opt/software).   
 
 > shares-license-\<date>.txt in System 1.    
+hsts-license-\<date>.txt in System 1.   
 console-license-\<date>.txt in System 2.      
-hsts-license-\<date>.txt in System 1.      
+   
 
-6. Stop and Disable Firewalld (note this is only for lab purposes – for a real install on a publicly available system, we would properly configure the firewall).  
+7. Stop and Disable Firewalld (note this is only for lab purposes – for a real install on a publicly available system, we would properly configure the firewall).  
 
 > Check: systemctl status firewalld  
 Disable: systemctl disable firewalld  
 Stop: systemctl stop firewalld  
 
 
-7. Set selinux to permissive.    
+8. Set selinux to permissive.    
 Edit /etc/selinux/config. Change the line that starts with “SELINUX” to the following, if not already set this way.   
 
 	`SELINUX=permissive`.  
 
 	If a change was made, Save the file and Reboot the machine.  
 	
-8.	Access to a SMTP server (Mandatory for Faspex5. Optional for Console and Shares). 
-For this lab, a sendgrid smtp server will be provided for email notifications.  This relay is not guaranteed to be around for very long after this training session, so you may have to use the GMAIL configuration as described at the end of this document.
+9.	Access to a SMTP server (Mandatory for Faspex5. Optional for Console and Shares).    
+You may have to use the GMAIL configuration as described at the end of this document. Refer [here](#-17-Using-Gmail-as-SMTP-server)
 
 
 ## 3 Install Transfer Server on HSTS system
@@ -121,8 +134,6 @@ For this lab, a sendgrid smtp server will be provided for email notifications.  
 
 		hostname hsts 
 		cd /opt/software/  
-		unzip ibm-aspera-hsts-*-linux64-public-key.pgp.zip
-		rpm --import public-key.pgp
 		yum localinstall -y ibm-aspera-hsts-*-linux-64.rpm
 		
 
@@ -209,13 +220,14 @@ The HSTS will need to be configured to be integrated with Shares.
 		Check the result of the above commands:
 		ls -lta /home/sharesuser/
 		ls -lta /home/sharesuser/.ssh/
-		ls -lta /data/
+		ls -lta /data/.  
 ![](images/image04.jpg).  
 
 		asconfigurator -F "get_user_data;user_name,sharesuser" | grep in_value
 		asconfigurator -F "get_user_data;user_name,sharesuser" | grep out_value
 		asconfigurator -F "get_user_data;user_name,sharesuser" | grep token_encryption_key
-		asconfigurator -F "get_user_data;user_name,sharesuser" | grep docroot
+		asconfigurator -F "get_user_data;user_name,sharesuser" | grep docroot.   
+		
 ![](images/image05.png)
 
 
@@ -428,7 +440,7 @@ Click on “Test” and the status should be ‘OK’
 ## 9 Setting up Email Configuration for Console
 
 Login to the Console page. Go to Notifications -> Email Server.
-Enter the details. The screenshot shows an example of using Gmail. You can use your own SMTP server. Refer to [Using Gmail as SMTP server](#using-gmail-as-smtp-server) on how to obtain details about Gmail. 
+Enter the details. The screenshot shows an example of using Gmail. You can use your own SMTP server. Refer to [Using Gmail as SMTP server](#-17-Using-Gmail-as-SMTP-server) on how to obtain details about Gmail. 
 
 ![](images/image18.png)
 
@@ -482,7 +494,8 @@ We have created a Shares End User and have assigned full access for a particular
 
 ## 11 Setting up Email Configuration for Shares
 Login to the Shares Admin page. Go to “SMTP” under Email.
-Enter the details. The screenshot shows an example of using Gmail. You can use your own SMTP server. Refer to [Using Gmail as SMTP server](#using-gmail-as-smtp-server) on how to obtain details about Gmail.     
+Enter the details. The screenshot shows an example of using Gmail. You can use your own SMTP server. Refer to [Using Gmail as SMTP server](#-17-Using-Gmail-as-SMTP-server) on how to obtain details about Gmail.        
+
 ![](images/image31.png)
  
 Click on “Update SMTP Server”.  
@@ -571,7 +584,7 @@ From the Faspex5 Admin page, Go to Security->Advanced collaboration and set the 
 
 ## 13 Setting Up Email Notification in Faspex
 
-We will setup Email (SMTP) servers for sending notifications. You need to have access to a SMTP server to do this. Otherwise, you can make use of Gmail. Refer to [Using Gmail as SMTP server](#using-gmail-as-smtp-server) on how to obtain details about Gmail.   
+We will setup Email (SMTP) servers for sending notifications. You need to have access to a SMTP server to do this. Otherwise, you can make use of Gmail. Refer to [Using Gmail as SMTP server](#-17-Using-Gmail-as-SMTP-server) on how to obtain details about Gmail.   
 
 Login to the Faspex5 Admin page. Go to Configuration -> Email Configuration.
 Enter the details. The screenshot shows an example of using Gmail. You can use your own SMTP server. 
@@ -596,9 +609,11 @@ Click on Users -> All Users -> Create New.
 ![](images/image43.png)
  
 Enter the details and click create.    
+
 ![](images/image44.png)
 
 When you click on Create. An email will be sent to the email address. Follow instructions to reset the password. This is a sample email sent.   
+
 ![](images/image45.png)
  
 
@@ -612,18 +627,21 @@ _Test from Shares._
 Open the Shares Web page in a web browser:    
 https://\<shares-IP-address>/    
 Login using the “Shares End User” created earlier. You may be asked to change your password during the first login. 
-Trigger a transfer (refer screenshot below).
+Trigger a transfer (refer screenshot below).   
+
 ![](images/image46.png)
 
 Check the folder in HSTS. Uploaded file should be visible. 
 
-	ls /data/shares_data/<Folder>/
+	ls /data/shares_data/<Folder>/.  
+	
 ![](images/image47.png)
 
 _Test from Faspex5_.  
 Open the Faspex5 Web page in a web browser: https://\<Faspex-IP>/    
 Login using the “Faspex5 End User” created earlier. You may be asked to change your password during the first login.    
-Once logged in click on “Send Files”.  
+Once logged in click on “Send Files”.    
+
 ![](images/image48.png)
 
 ### Aspera Desktop Client
@@ -641,7 +659,8 @@ Double click on the newly created connection and it will connect to the Shares s
 ### Aspera Drive functionality, now in Aspera Connect Client
 
 If Aspera Connect client is not running on your desktop, start it.  	
-From the Menu Bar on Mac, or the System Tray on Windows, click the Connect icon and then click Preferences.  
+From the Menu Bar on Mac, or the System Tray on Windows, click the Connect icon and then click Preferences.    
+
 ![](images/image51.png)
 
 Click on Accounts, then + in the lower left corner.  Select IBM Aspera Shares and click Next.
@@ -719,6 +738,7 @@ Login to the Console Admin interface: https://\<Console-IP>/aspera/console/ usin
 
 Go to Dashboard tab.
 You will be able to monitor current transfers, recently completed transfers and recently failed transfers.   
+
 ![](images/image58.png).  
 
 ### Managing Transfer Server
