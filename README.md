@@ -224,6 +224,7 @@ The HSTS will need to be configured to be integrated with Shares.
 		ls -lta /home/sharesuser/
 		ls -lta /home/sharesuser/.ssh/
 		ls -lta /data/.  
+		
 ![](images/image04.jpg).  
 
 		asconfigurator -F "get_user_data;user_name,sharesuser" | grep in_value
@@ -443,7 +444,7 @@ Click on “Test” and the status should be ‘OK’
 ## 9 Setting up Email Configuration for Console
 
 Login to the Console page. Go to Notifications -> Email Server.
-Enter the details. The screenshot shows an example of using Gmail. You can use your own SMTP server. Refer to [Using Gmail as SMTP server](#-17-Using-Gmail-as-SMTP-server) on how to obtain details about Gmail. 
+Enter the details. The screenshot shows an example of using Gmail. You can use your own SMTP server. Refer to [Using Gmail as SMTP server](#-17-using-gmail-as-smtp-server) on how to obtain details about Gmail. 
 
 ![](images/image18.png)
 
