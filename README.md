@@ -78,6 +78,7 @@ Edit the /etc/ssh/sshd_config file (use vi for editing). Add port 33001.
 	Restart sshd. 
 
 			systemctl restart sshd  
+			
  	Subsequently, to ssh into the server, use the command:
  	
 	 	ssh -p 33001 root@<IP Address>
