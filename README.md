@@ -129,7 +129,7 @@ Edit /etc/selinux/config. Change the line that starts with “SELINUX” to the 
 	If a change was made, Save the file and Reboot the machine.  
 	
 9.	Access to a SMTP server (Mandatory for Faspex5. Optional for Console and Shares).    
-You may have to use the GMAIL configuration as described at the end of this document. Refer [here](#-17-Using-Gmail-as-SMTP-server)
+You may have to use the GMAIL configuration as described at the end of this document. Refer [here](#17-using-gmail-as-smtp-server)
 
 
 ## 3 Install Transfer Server on HSTS system
