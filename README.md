@@ -692,6 +692,13 @@ You will then see the shares you have access to.  You can click on the share and
 
 ![](images/image57.png)
 
+
+### IBM Aspera For Desktop   
+
+This is the newest client option. Download the IBM Aspera For Desktop from [https://ibmaspera.com/help/downloads/desktop](https://ibmaspera.com/help/downloads/desktop)   
+Explore connecting to Faspex5.   
+
+
 ### Aspera Mobile Application
 
 IBM Aspera mobile app is available for download from PlayStore and AppStore.  
