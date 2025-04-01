@@ -29,7 +29,7 @@ From this page, you can pick the needed software. Make sure to download linux ve
 
 ### Licenses
 
-Evaluation Licenses can be obtained from: [https://ibm.box.com/s/3e35cd8m3eaqpndeuc9e51igqtxl2u4l](https://ibm.box.com/s/3e35cd8m3eaqpndeuc9e51igqtxl2u4l).  
+Evaluation Licenses can be obtained from: [https://ibm.box.com/s/rvtvurpkg82n1hwwjeyp4e1p977fi1n4](https://ibm.box.com/s/rvtvurpkg82n1hwwjeyp4e1p977fi1n4).  
 Evaluation licenses are normally valid till end of the month. 
 
 ### Learning Paths
@@ -66,7 +66,7 @@ Path 2 – HSTS and Faspex5 (Estimated time: 1 hour).
 
 ## 2 Lab Prerequisites
 
-1.	Three servers (physical or VM) with at least 2 cores, 8GB RAM and 10GB storage. CentOS 7.x or RHEL 8.x operating system. [ This hardware spec and co-hosting of components is for lab purposes only. NOT suitable for customer environment] 
+1.	Three servers (physical or VM) with at least 2 cores, 8GB RAM and 10GB storage. RHEL 9.x operating system. [ This hardware spec and co-hosting of components is for lab purposes only. NOT suitable for customer environment] 
 2. In this lab document, we will refer to the systems by 3 names, HSTS, Console, and Faspex.   
 3.	Login to your servers using Mac terminal or Putty (Windows users). If you do not have root access, you will have to use sudo to run the commands. 
 4. Make SSH listen on port 33001.   
