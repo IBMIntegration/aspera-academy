@@ -697,6 +697,7 @@ You will then see the shares you have access to.  You can click on the share and
 
 This is the newest client option. Download the IBM Aspera For Desktop from [https://ibmaspera.com/help/downloads/desktop](https://ibmaspera.com/help/downloads/desktop)   
 Explore connecting to Faspex5.   
+Reference: [https://www.ibm.com/docs/en/aspera-for-desktop/1.0.5?topic=getting-started](https://www.ibm.com/docs/en/aspera-for-desktop/1.0.5?topic=getting-started)   
 
 
 ### Aspera Mobile Application
