@@ -12,10 +12,10 @@ You will test transferring a file (around 100MB) using SCP [e.g. Filezilla] and 
 3. Open FileZilla and establish a connection to the Aspera Server.  Connection Details:   
 	
 		Protocol: SFTP
-		Host: aspera-techjam.asperademo.com
+		Host: <HSTS-HOSTNMAE>
 		Port: 33001
 		Login Type: Normal
-		User: Use your Login ID (e.g. jarjar17)
+		User: Use your Login ID (e.g. user15)
 		Password: Use your password. 
 		
 	
