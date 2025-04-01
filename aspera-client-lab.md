@@ -28,13 +28,13 @@ You will test transferring a file (around 100MB) using SCP [e.g. Filezilla] and 
 
 
 1. Next, do a similar test with. Aspera Desktop Client.   
-2. Download and Install Aspera Desktop Client from [here](https://www.ibm.com/support/fixcentral/swg/selectFixes?parent=ibm~Other%20software&product=ibm/Other%20software/IBM%20Aspera%20Desktop%20Client&release=All&platform=All&function=all).  
-3. Open Desktop Client and establish a connection to the Aspera Server.  Connection details:
+2. Download and Install Aspera Desktop Client from [here](https://www.ibm.com/products/aspera/downloads).  
+3. Open Desktop Client and establish a connection to the Aspera Shares Server.  Connection details:
 
 	Click on Connection and then the "+" sign.   
 	
-		Host: aspera-techjam.asperademo.com
-		User: Use your Login ID (e.g. jarjar17)
+		Host: https://<SHARES-URL>
+		User: Use your Login ID (e.g. rajan@my.ibm.com)
 		Authentication: Choose Password
 		Password: Use your password. 
 		
