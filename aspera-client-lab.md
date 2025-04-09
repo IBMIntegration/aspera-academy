@@ -21,7 +21,7 @@ You will test transferring a file (around 100MB) using SCP [e.g. Filezilla] and 
 	
 	![](images/image62.jpg)
 	
-4. Click on Connect and initiate a transfer. Take note of how long it takes to transfer.   
+4. Click on Connect. Delete the file if it exists in destination. Initiate a transfer. Take note of how long it takes to transfer.   
 
 	![](images/image63.jpg)
 
@@ -40,7 +40,7 @@ You will test transferring a file (around 100MB) using SCP [e.g. Filezilla] and 
 		
 	![](images/image64.jpg)
 	
-1. Click on OK. Then, double-click on the connection to establish connection.  Browse to your home folder (e.g. /home/kumar).  Initiate a transfer. Click on the Details tab to check how long it took to transfer the file.   
+1. Click on OK. Then, double-click on the connection to establish connection.  Browse to your home folder (e.g. /home/kumar).  Delete the file if it exists in destination. Initiate a transfer. Click on the Details tab to check how long it took to transfer the file.   
 
 	![](images/image65.jpg)
 	
